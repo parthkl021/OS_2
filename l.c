@@ -15,7 +15,7 @@ int main (){
     int id2 = fork();
     if(id1 ==0){
         if(id2 == 0){
-            execl("/bin/sh","sh","/home/parth/chad.sh",NULL);
+            execl("/bin/sh","sh","/home/user/chad.sh",NULL);
         }
         if(id2 !=0){
             waitpid(id2,NULL,0);
@@ -24,7 +24,7 @@ int main (){
             printf("%d",val);
             // // 
             sleep(3);
-            execl("/bin/sh","sh","/home/parth/chad.sh",NULL);
+            execl("/bin/sh","sh","/home/user/chad.sh",NULL);
 
         }
     }
@@ -34,14 +34,14 @@ int main (){
         long long int val = end1.tv_sec - ini2.tv_sec ;
         printf("%d",val);
         sleep(1);
-        execl("/bin/sh","sh","/home/parth/chad.sh",NULL);
+        execl("/bin/sh","sh","/home/user/chad.sh",NULL);
     }
     if(id1 !=0 && id2!=0){
             waitpid(id2,NULL,0);
             clock_gettime(CLOCK_REALTIME, &end1);
             long long int val = end1.tv_sec - ini2.tv_sec ;
             printf("%lld",val);
-            sleep(4);
-            execl("/bin/sh","sh","/home/parth/chad.sh",NULL);
+           // sleep(4);
+           // execl("/bin/sh","sh","/home/parth/chad.sh",NULL);
     }
 }
