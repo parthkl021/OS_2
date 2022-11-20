@@ -58,9 +58,8 @@ void *ThrA(){
 
     char wr[50];
     
-    sprintf(wr,"%lf",val)
+    sprintf(wr,"%lf\n",val);
     fputs(wr, p1);
-    fclose(p1);
 
     printf("\n");
 }
@@ -81,9 +80,8 @@ void *ThrB(){
 
     char wr1[50];
     
-    sprintf(wr1,"%lf",val)
+    sprintf(wr1,"%lf\n",val1);
     fputs(wr1, p2);
-    fclose(p2);
     
     printf("\n");
 }
@@ -105,29 +103,29 @@ void *ThrC(){
 
     char wr2[50];
     
-    sprintf(wr2,"%lf",val)
+    sprintf(wr2,"%lf\n",val2);
     fputs(wr2, p3);
     
 
     printf("\n");
 }
 int main (){
-    for (int i = 0; i < 5; i++)
-    {
         p1 = fopen("other.txt", "w+");
         p2 = fopen("rr.txt", "w+");
         p3 = fopen("fifo.txt", "w+");
-        pthread_create(&t,NULL,&ThrA,NULL);
+	for(int i=0;i < 5;i++)
+    {    pthread_create(&t,NULL,&ThrA,NULL);
         pthread_create(&t2,NULL,&ThrB,NULL);
         pthread_create(&t3,NULL,&ThrC,NULL);
         index = index + 17;
         pthread_join(t, NULL);
         pthread_join(t2,NULL);
         pthread_join(t3,NULL);
-        fclose(p1);
+	}    
+    fclose(p1);
         fclose(p2);
         fclose(p3);
-    }
+    
     
     
 }

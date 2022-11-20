@@ -40,7 +40,7 @@ void countC(){
 void *ThrA(){
     struct sched_param ft1;
     ft1.sched_priority = index;
-    int k = setpriority(PRIO_PROCESS,0,-20);
+    int k = setpriority(PRIO_PROCESS,0,0);
     printf("%d\n",k);
     int a2 = pthread_setschedparam(t,SCHED_OTHER,&ft1);
     struct timespec ini, end;
@@ -52,7 +52,7 @@ void *ThrA(){
     clock_gettime(CLOCK_REALTIME, &end);
     double val = (end.tv_sec - ini.tv_sec)+(end.tv_nsec - ini.tv_nsec)/1000000000.0;
     printf("For SCHED_OTHER part: ");
-    printf("%ld",val);
+    printf("%lf",val);
     printf("\n");
 }
 void *ThrB(){
@@ -64,11 +64,11 @@ void *ThrB(){
     clock_gettime(CLOCK_REALTIME, &ini1);
     
     countB();
-    
+//	printf("%d",index);    
     clock_gettime(CLOCK_REALTIME, &end1);
     double val1 = end1.tv_sec - ini1.tv_sec + (end1.tv_nsec - ini1.tv_nsec)/1000000000.0;
     printf("For SCHED_RR part: ");
-    printf("%ld",val1);
+    printf("%lf",val1);
     printf("\n");
 }
 void *ThrC(){
@@ -85,7 +85,7 @@ void *ThrC(){
     clock_gettime(CLOCK_REALTIME, &end2);
     double val2 = end2.tv_sec - ini2.tv_sec + (end2.tv_nsec - ini2.tv_nsec)/1000000000.0;
     printf("For SCHED_FIFO part: ");
-    printf("%ld",val2);
+    printf("%lf",val2);
     printf("\n");
 }
 int main (){
@@ -94,11 +94,11 @@ int main (){
         pthread_create(&t,NULL,&ThrA,NULL);
         pthread_create(&t2,NULL,&ThrB,NULL);
         pthread_create(&t3,NULL,&ThrC,NULL);
-    
+	index = index + 17;
         pthread_join(t, NULL);
         pthread_join(t2,NULL);
         pthread_join(t3,NULL);
-        index + 17;
+      
     }
     
     

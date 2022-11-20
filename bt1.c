@@ -53,7 +53,7 @@ void *ThrA(){
     
     double val = (end.tv_sec - ini.tv_sec)+(end.tv_nsec - ini.tv_nsec)/1000000000.0;
     p1 = fopen("other.txt", "w+");
-    fputs(string(val), p1);
+    fputs(sprintf(val), p1);
     fclose(p1);
 
     printf("For SCHED_OTHER part: ");

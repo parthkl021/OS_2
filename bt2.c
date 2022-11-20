@@ -58,7 +58,7 @@ void *ThrA(){
 
     char wr[50];
     p1 = fopen("other.txt", "w+");
-    sprintf(wr,"%lf",val)
+    sprintf(wr,"%lf",val);
     fputs(wr, p1);
     fclose(p1);
 
@@ -81,7 +81,7 @@ void *ThrB(){
 
     char wr1[50];
     p2 = fopen("rr.txt", "w+");
-    sprintf(wr1,"%lf",val)
+    sprintf(wr1,"%lf",val1);
     fputs(wr1, p2);
     fclose(p2);
     
@@ -105,7 +105,7 @@ void *ThrC(){
 
     char wr2[50];
     p3 = fopen("fifo.txt", "w+");
-    sprintf(wr2,"%lf",val)
+    sprintf(wr2,"%lf",val2);
     fputs(wr2, p3);
     fclose(p3);
 

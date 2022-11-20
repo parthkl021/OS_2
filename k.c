@@ -39,7 +39,7 @@ void countC(){
 void *ThrA(){
     struct sched_param ft1;
     ft1.sched_priority = 0;
-    int k = setpriority(PRIO_PROCESS,0,-20);
+    int k = setpriority(PRIO_PROCESS,0,0);
     printf("%d\n",k);
     int a2 = pthread_setschedparam(t,SCHED_OTHER,&ft1);
     struct timespec ini, end;
@@ -51,12 +51,12 @@ void *ThrA(){
     clock_gettime(CLOCK_REALTIME, &end);
     double val = (end.tv_sec - ini.tv_sec)+(end.tv_nsec - ini.tv_nsec)/1000000000.0;
     printf("For SCHED_OTHER part: ");
-    printf("%ld",val);
+    printf("%lf",val);
     printf("\n");
 }
 void *ThrB(){
     struct sched_param ft2 ;
-    ft2.sched_priority = 1;
+    ft2.sched_priority = 99;
 
     int a = pthread_setschedparam(t2,SCHED_RR,&ft2);
     struct timespec ini1, end1;
@@ -67,13 +67,13 @@ void *ThrB(){
     clock_gettime(CLOCK_REALTIME, &end1);
     double val1 = end1.tv_sec - ini1.tv_sec + (end1.tv_nsec - ini1.tv_nsec)/1000000000.0;
     printf("For SCHED_RR part: ");
-    printf("%ld",val1);
+    printf("%lf",val1);
     printf("\n");
 }
 void *ThrC(){
     // struct sched_param *ft3 = malloc(sizeof(struct sched_param));
     struct sched_param ft3;
-    ft3.sched_priority = 2;
+    ft3.sched_priority = 4;
     // ft3->sched_priority = 1;
     int a3 = pthread_setschedparam(t3,SCHED_FIFO,&ft3);
     struct timespec ini2, end2;
@@ -84,7 +84,7 @@ void *ThrC(){
     clock_gettime(CLOCK_REALTIME, &end2);
     double val2 = end2.tv_sec - ini2.tv_sec + (end2.tv_nsec - ini2.tv_nsec)/1000000000.0;
     printf("For SCHED_FIFO part: ");
-    printf("%ld",val2);
+    printf("%lf",val2);
     printf("\n");
 }
 int main (){
